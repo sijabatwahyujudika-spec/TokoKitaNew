@@ -1,4 +1,4 @@
-echo '{
+{
     "$schema": "https://getcomposer.org/schema.json",
     "name": "laravel/laravel",
     "type": "project",
@@ -16,7 +16,7 @@ echo '{
         "laravel/framework": "^13.8",
         "laravel/sanctum": "*",
         "laravel/tinker": "^3.0"
-    ],
+    },
     "require-dev": {
         "fakerphp/faker": "^1.23",
         "laravel/pail": "^1.2.5",
@@ -48,11 +48,11 @@ echo '{
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ],
         "post-root-package-install": [
-            "@php -r \"file_exists('\'.env'\'') || copy('\'.env.example'\'', '\'.env'\'');\""
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi",
-            "@php -r \"file_exists('\'.database/database.sqlite'\'') || touch('\'.database/database.sqlite'\'');\"",
+            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
             "@php artisan migrate --graceful --ansi"
         ]
     },
@@ -72,4 +72,4 @@ echo '{
     },
     "minimum-stability": "stable",
     "prefer-stable": true
-}' > composer.json
+}

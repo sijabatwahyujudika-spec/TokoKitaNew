@@ -18,7 +18,7 @@
                     <tr>
                         <th>ID Order</th>
                         <th>Paket & Jumlah</th>
-                        <th>Detail Add-ons</th>
+                        <th>Detail Produk</th>
                         <th>Total Biaya</th>
                         <th>Status</th>
                     </tr>
@@ -52,7 +52,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="5" class="text-center py-4 text-muted">Belum ada pesanan dibuat.</td>
+                        <td colspan="5" class="text-center py-4 text-muted">Silahkan Tambahkan Pesanan Baru</td>
                     </tr>
                     @endforelse
                 </tbody>

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\URL;
 use App\Models\User;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,12 +22,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Gate untuk pengecekan apakah user adalah admin
+        // 1. Memaksa URL menggunakan HTTPS jika aplikasi berjalan di server hosting (production)
+        if (config('app.env') === 'production') {
+            URL::forceScheme('https');
+        }
+
+        // 2. Gate untuk Admin (diubah agar akun 'pustakawan' juga dianggap admin/bisa lewat)
         Gate::define('isAdmin', function (User $user) {
-            return $user->role === 'admin';
+            return $user->role === 'admin' || $user->role === 'pustakawan';
         });
 
-        // Gate untuk pengecekan apakah user adalah pustakawan
+        // 3. Gate khusus untuk pengecekan Pustakawan saja
         Gate::define('isPustakawan', function (User $user) {
             return $user->role === 'pustakawan';
         });

@@ -75,7 +75,7 @@ class PesananController extends Controller
     }
 
     // 5. Mengubah status pesanan
-    public function updateStatus(Request $request, $id) {
+    public function updateStatus(Request $request, int $id) {
         $request->validate([
             'status' => 'required|in:Menunggu Pembayaran,Sedang Dicuci,Selesai'
         ]);
@@ -85,6 +85,6 @@ class PesananController extends Controller
             'status' => $request->status
         ]);
 
-        return redirect()->back()->with('success', 'Status pesanan pelanggan berhasil diperbarui!');
+        return back()->with('success', 'Status pesanan pelanggan berhasil diperbarui!');
     }
 }
